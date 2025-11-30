@@ -1,17 +1,13 @@
 :root {
-    /* System font family */
     --system-font: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
-    /* Background colors */
     --bg-primary-color: #0c0c0c;
     --bg-fill-color: #d79823;
     --bg-food-color: #ff3b3b;
     --bg-transparent: #0a080839;
 
-    /* Text colors */
     --text-primary-color: #ffffff;
 
-    /* paddings */
     --space-xs: 4px;
     --space-sm: 8px;
     --space-md: 16px;
@@ -20,9 +16,6 @@
     --space-2xl: 40px;
     --space-3xl: 48px;
 
-    /* margins */
-    
-    /* Border Radius */
     --border-radius-xs: 4px ;
     --border-radius-sm: 8px ;
     --border-radius-md: 12px ;
@@ -30,20 +23,19 @@
     --border-radius-xl: 24px ;
     --border-radius-2xl: 32px ;
 
-    /* Border colors */
     --border-primary-color: #333333;
-
 }
 
 *{
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 html,body{
+    height: 100%;
+    width: 100%;
     overflow: hidden;
-    height: 100vh;
-    width: 100vw;
 }
 
 html {
@@ -53,13 +45,13 @@ html {
 }
 
 main, section{
-    height:85%;
-    width: 97%;
+    height: 100%;
+    width: 100%;
 }
 
 section {
     height: 100%;
-    padding: var(--space-2xl);
+    padding: var(--space-lg);
     display: flex;
     flex-direction: column;
     gap: var(--space-lg);
@@ -70,26 +62,30 @@ section .infos {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 4px;
 }
 
 .info {
     padding: var(--space-sm) var(--space-md);
     border: 2px solid var(--border-primary-color);
     border-radius: var(--border-radius-sm);
+    font-size: clamp(12px, 2vw, 18px);
 }
 
 .board {
     border: 1px solid var(--border-primary-color);
     flex-grow: 1;
     display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(50px, 1fr));
-    grid-template-rows: repeat(auto-fill,minmax(50px, 1fr));
+
+    /* Make grid responsive */
+    grid-template-columns: repeat(auto-fill, minmax(min(50px, 8vw), 1fr));
+    grid-template-rows: repeat(auto-fill, minmax(min(50px, 8vw), 1fr));
+
+    /* Prevent horizontal stretching */
+    width: 100%;
+    max-width: 100%;
 }
 
 .block {
-    /* width: 30px;
-    height: 30px; */
     border: 1px solid var(--border-primary-color);
 }
 
@@ -101,9 +97,10 @@ section .infos {
     background-color: var(--bg-food-color);
 }
 
+/* Buttons */
 .btn {
     font-weight: 700;
-    font-size: large;
+    font-size: clamp(16px, 4vw, 24px);
     border: none;
     padding: var(--space-md) var(--space-md);
     border-radius: var(--border-radius-md);
@@ -115,6 +112,7 @@ section .infos {
     transform: scale(1.1);
 }
 
+/* Modal */
 .modal {
     height: 100vh;
     width: 100vw;
@@ -127,7 +125,7 @@ section .infos {
     backdrop-filter: blur(4px);
 }
 
-.start-game {
+.start-game, .over-game {
     display: flex;
     flex-direction: column;
     gap: var(--space-lg);
@@ -136,14 +134,9 @@ section .infos {
 }
 
 .over-game {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-lg);
-    align-items: center;
     display: none;
-    justify-content: center;
 }
 
 .modal h3 {
-    font-size: 5vw;
+    font-size: clamp(20px, 6vw, 48px);
 }
